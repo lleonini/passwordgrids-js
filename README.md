@@ -5,6 +5,11 @@ PasswordGrid is a password generator that helps to generate
 high security
 passwords using grids.
 
+This is the standalone javascript version, for more information, please visit:
+[PasswordGrid CLI](https://www.github.com/lleonini/passwordgrid-cli)
+
+[Try it now !](http://htmlpreview.github.io/?https://github.com/lleonini/passwordgrid-js/blob/master/passwordgrid.html)
+
 ```
 A7  P2  GR  6F    W9  L3  HT  8S    U6  UA  5K  2Y    9X  TR  TW  JL
 W6  4G  0G  40    HE  93  0G  J1    F6  F4  MP  ZD    27  0F  KZ  TL
@@ -45,15 +50,9 @@ Z5  LA  8U  ES    H3  YT  FE  US    25  3R  81  FL    1F  J4  0M  Z9
 0G  76  EJ  2A    XW  4F  AH  R6    FD  K2  W1  0Z    2K  UR  0X  95
 ```
 
-This is the standalone javascript version, for more information, please visit:
-[PasswordGrid CLI](https://www.github.com/lleonini/passwordgrid-cli)
-
-Test now: [click here](http://htmlpreview.github.io/?https://github.com/lleonini/passwordgrid-js/blob/master/passwordgrid.html)
-
 ## Security
 
-This version is purely client-side JS. So none of your inputs are sent to a
-server.
+This version is purely client-side JS. No inputs are sent to a server.
 
 # License
 
