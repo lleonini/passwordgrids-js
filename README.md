@@ -50,6 +50,11 @@ This is the standalone javascript version, for more information, please visit:
 
 Test now: [click here](http://htmlpreview.github.io/?https://github.com/lleonini/passwordgrid-js/blob/master/passwordgrid.html)
 
+## Security
+
+This version is purely client-side JS. So none of your inputs are sent to a
+server.
+
 # License
 
 (The MIT License)
