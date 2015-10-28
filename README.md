@@ -1,14 +1,14 @@
 # Overview
 
-PasswordGrid is a password generator that helps to generate
+PasswordGrids is a password generator that helps to generate
 [unique](http://xkcd.com/792/)
 high security
 passwords using grids.
 
 This is the standalone javascript version, for more information, please visit:
-[PasswordGrid CLI](https://www.github.com/lleonini/passwordgrid-cli)
+[PasswordGrids CLI](https://www.github.com/lleonini/passwordgrids-cli)
 
-[Try it now !](http://htmlpreview.github.io/?https://github.com/lleonini/passwordgrid-js/blob/master/passwordgrid.html)
+[Live version](http://passwordgrids.com)
 
 ```
 A7  P2  GR  6F    W9  L3  HT  8S    U6  UA  5K  2Y    9X  TR  TW  JL
