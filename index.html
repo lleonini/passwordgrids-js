@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="description" content="PasswordGrids JS">
-		<meta name="keywords" content="password, generator, grid, grids">
+		<meta name="description" content="PasswordGrids JS - unique secure passwords generator">
+		<meta name="keywords" content="password, generator, grid, grids, passwordgrids, secure, random, unique">
 		<meta name="author" content="Lorenzo Leonini">
-		<title>PasswordGrids JS</title>
+		<title>PasswordGrids JS - unique secure passwords generator</title>
+		<link rel=icon href="favicon.ico" sizes="16x16" type="image/vnd.microsoft.icon">
 		<style>
 			body {
 				margin: 0;
@@ -130,12 +131,17 @@
 
 			document.onkeydown = function(evt) {
 				var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
-				if (keyCode == '13') {
+				if (keyCode == '13' || keyCode == '9') {
 					if (document.activeElement == document.getElementById('identifier')) {
 						document.getElementById("salt").focus();
+						document.getElementById("salt").select();
 					} else {
+						document.getElementById("identifier").focus();
+						document.getElementById("identifier").select();
 						refresh();
 					}
+					//evt.preventDefault();
+					return false;
 				}
 			}
 		</script>
@@ -147,18 +153,23 @@
 			&gt; master password: <input id="salt" type="password">
 		</p>
 		<div id="doc">
-			(press ENTER to change field and then generate the grid)
+			(press ENTER/TAB to change field and/or refresh)
 		</div>
 		<div id="grids"></div>
 		<div id="container">
   		<div id="copyright">
-				<a href="https://github.com/lleonini/passwordgrids-cli">documentation</a> -
-				<a href="https://github.com/lleonini/passwordgrids-js">sources</a> -
+			<a href="https://github.com/lleonini/passwordgrids-cli">documentation</a> -
+			<a href="https://github.com/lleonini/passwordgrids-js">sources</a> -
     		© 2015 <a href="http://github.com/lleonini">Lorenzo Leonini</a>
   		</div>
 		</div>
 		<script>
 			document.getElementById("identifier").focus();
+		</script>
+		<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			_uacct = "UA-2991998-2";
+			urchinTracker();
 		</script>
 	</body>
 </html>
