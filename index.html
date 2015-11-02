@@ -124,26 +124,36 @@
 
 			function refresh() {
 				document.getElementById("grids").innerHTML = grids(
-					document.getElementById('identifier').value,
-					document.getElementById('salt').value
+					document.getElementById('salt').value,
+					document.getElementById('identifier').value
 				);
 			}
 
 			document.onkeydown = function(evt) {
 				var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
-				if (keyCode == '13' || keyCode == '9') {
-					if (document.activeElement == document.getElementById('identifier')) {
+
+				if (document.activeElement == document.getElementById('identifier')) {
+					if (keyCode == 13) {
+						document.getElementById("identifier").select();
+					} else if (keyCode == 9) {
 						document.getElementById("salt").focus();
 						document.getElementById("salt").select();
-					} else {
+					}
+				} else if (document.activeElement == document.getElementById('salt')) {
+					if (keyCode == 13 || keyCode == 9) {
 						document.getElementById("identifier").focus();
 						document.getElementById("identifier").select();
-						refresh();
 					}
+				}
+				if (keyCode == 13 || keyCode == 9) {
+					refresh();
 					//evt.preventDefault();
 					return false;
 				}
 			}
+			//document.onkeyup = function(evt) {
+				//refresh();
+			//}
 		</script>
 	</head>
 	<body>
@@ -164,7 +174,7 @@
   		</div>
 		</div>
 		<script>
-			document.getElementById("identifier").focus();
+			document.getElementById("salt").focus();
 		</script>
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
