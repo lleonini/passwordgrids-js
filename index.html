@@ -3,23 +3,29 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="description" content="PasswordGrids JS - unique secure passwords generator">
-		<meta name="keywords" content="password, generator, grid, grids, javascript, passwordgrids, secure, random, unique">
+		<meta name="keywords" content="password, generator, grid, grids, javascript, passwordgrids, secure, random, unique, free">
 		<meta name="author" content="Lorenzo Leonini">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>PasswordGrids JS - unique secure passwords generator</title>
 		<link rel=icon href="favicon.ico" sizes="16x16" type="image/vnd.microsoft.icon">
 		<style>
 			body {
-				margin: 0;
-				padding: 10px;
-				width: 680px;
+				margin: auto;
+				padding: 0;
+				width: 700px;
 				font-family: monospace;
 				font-size: 20px;
+				color: #222;
 			}
 			table {
 				border-spacing: 0;
 				border-collapse: colapse;
 			}
-			td {
+			table#all {
+				border: 2px solid #bbb;
+				background-color: white;
+			}
+			table.grid > td {
 				padding: 0;
 			}
 			tr.spacer {
@@ -38,11 +44,12 @@
 			}
 			#grids {
 				font-size: 16px;
-				margin-top: 8px;
+				margin: 10px 0;
 				display: inline-block;
 			}
 			td.cell {
-				padding: 0px;
+				padding: 0;
+				background-color: white;
 			}
 			input {
 				height: 20px;
@@ -51,14 +58,34 @@
 				border-bottom: 1px solid #555;
 				background-color: #eee;
 			}
-			#doc {
-				font-size: 15px;
-				color: #aaa;
+			#title {
+				margin-bottom: 20px;
 			}
-			#container {
+			#subtitle {
+				font-size: 15px;
+			}
+			#top {
+				padding: 0;
+				margin: 8px 0;
+			}
+			#input {
+				display: inline-block;
+				width: 400px;
+				line-height: 140%;
+			}
+			#doc {
+				display: inline-block;
+				width: 280px;
+				font-size: 15px;
+				color: #999;
+			}
+			#doc2 {
+				font-size: 15px;
+			}
+			#footer {
 				width: 100%;
 				text-align: center;
-				margin-top: 10px;
+				margin: 15px 0;
 			}
 			#copyright {
 				font-size: 12px;
@@ -75,6 +102,7 @@
 		<script src="sha512.js"></script>
 		<script>
 			var alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			var demo = false;
 				
 			function grid(text) {
 				var hash = String(CryptoJS.SHA512(text));
@@ -88,7 +116,7 @@
 			}
 
 			function grid2table(grid) {
-				var out = "<table id='grid'>";
+				var out = "<table class='grid'>";
 				for (var line = 0; line < 8; line++) {
 					out += "<tr>";
 					for (var col = 0; col < 8; col++) {
@@ -107,7 +135,11 @@
 				return out;
 			}
 
+			var cache = {};
 			function grids(salt, identifier) {
+				if (cache[salt + "-" + identifier]) {
+					return cache[salt + "-" + identifier];
+				}
 				var pos = 0;
 				var out = "<table id='all'>";
 				for (var line = 0; line < 3; line++) {
@@ -119,10 +151,12 @@
 					out += "</tr>";
 				}
 				out += "</table>";
+				cache[salt + "-" + identifier] = out;
 				return out;
 			}
 
 			function refresh() {
+				demo = false;
 				document.getElementById("grids").innerHTML = grids(
 					document.getElementById('salt').value,
 					document.getElementById('identifier').value
@@ -149,22 +183,48 @@
 					return false;
 				}
 			}
-			//document.onkeyup = function(evt) {
-				//refresh();
-			//}
+
+			function demof() {
+				if (demo) {
+					document.getElementById("grids").innerHTML = grids(
+							"", Math.round(Math.random() * 20));
+					setTimeout(function(){ demof(); }, 50);
+				}
+			}
+			setTimeout(function(){ demof(); }, 50);
+			
 		</script>
 	</head>
 	<body>
-		<div># PasswordGrids JS</div>
-		<p style="padding: 0; margin: 8px 0; line-height: 140%">
-			&gt; master password: <input id="salt" type="password"><br>
-			&gt; identifier: <input id="identifier" type="password">
-		</p>
-		<div id="doc">
-			Press ENTER/TAB to change field and/or refresh. Close page when done.
+		<div id="title">
+			<h1 style="margin-bottom: 0"># PasswordGrids</h1>
+			<span id="subtitle">A simple way to generate unique, secure passwords</span>
+		</div>
+			
+		<div id="top">
+			<div id="input">
+				&gt; master password: <input id="salt" type="password"><br>
+				&gt; identifier: <input id="identifier" type="password">
+			</div>
+			<div id="doc">
+				Press ENTER/TAB to change field and/or refresh. Close page when done.
+			</div>
 		</div>
 		<div id="grids"></div>
-		<div id="container">
+		<div id="doc2">
+			Free, easy and secure. Nothing is sent over internet. Works offline.
+			<ol>
+				<li>Choose a master password</li>
+				<li>Enter the identifier (website or account name)</li>
+				<li>Choose a pattern in the grids to build your password</li>
+				<li>Choose a prefix, add it, your passsword is ready !</li>
+				<li>See
+					<a href="https://github.com/lleonini/passwordgrids-cli">documentation</a>
+					for more informations
+				</li>
+			</ol>
+		</div>
+		<div id="footer">
   		<div id="copyright">
 			<a href="https://github.com/lleonini/passwordgrids-cli">documentation</a> -
 			<a href="https://github.com/lleonini/passwordgrids-js">sources</a> -
