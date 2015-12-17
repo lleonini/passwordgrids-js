@@ -1,5 +1,9 @@
 CACHE MANIFEST
 # This is a comment
 index.html
-sha512.js
+css/main.css
+css/introjs.min.css
+js/sha512.js
+js/main.js
+js/intro.min.js
 favicon.ico
