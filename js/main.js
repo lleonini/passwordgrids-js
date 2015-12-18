@@ -12,13 +12,13 @@ function grid(text) {
 	return out;
 }
 
-function grid2table(grid) {
-	var out = "<table class='grid'>";
+function grid2table(grid, num) {
+	var out = "<table id='grid" + num + "' class='grid'>";
 	for (var line = 0; line < 8; line++) {
 		out += "<tr>";
 		for (var col = 0; col < 8; col++) {
 			var pos = line * 8 + col
-				out += "<td class='cell'>" + grid[pos] + "</td>";
+				out += "<td id='grid" + num + "-" + line + col + "' class='cell'>" + grid[pos] + "</td>";
 			if (col % 2 == 1 && col < 7) {
 				out += "<td class='spacer'><div class='spacer'>&nbsp;</div></td>";
 			}
@@ -42,7 +42,9 @@ function grids(salt, identifier) {
 	for (var line = 0; line < 3; line++) {
 		out += "<tr>";
 		for (var col = 0; col < 4; col++) {
-			out += "<td>" + grid2table(grid(salt + "-" + pos + "-" + identifier)) + "</td>";
+			out += "<td>" +
+				grid2table(grid(salt + "-" + pos + "-" + identifier), "" + line + col) +
+				"</td>";
 			pos++;
 		}
 		out += "</tr>";
@@ -81,6 +83,32 @@ document.onkeydown = function(evt) {
 	}
 }
 
+function highlight(id) {
+	document.getElementById(id).style.backgroundColor = "#f00";
+	setTimeout(function() {document.getElementById(id).style.backgroundColor = "yellow";}, 500);
+}
+
+function linePattern() {
+	var l = Math.round(Math.random() * 1);
+	var c = Math.round(Math.random() * 2);
+	var line = Math.round(Math.random() * 7);
+	var dt = 500;
+	var t = 0;
+	for (var p = 0; p < 4; p++) {
+		t += dt;
+		setTimeout(highlight, t, "grid" + l + c + "-" + line + (p * 2 + 1));
+	}
+	for (var p = 0; p < 4; p++) {
+		t += dt;
+		setTimeout(highlight, t, "grid" + l + (c + 1) + "-" + line + (p * 2 + 1));
+	}
+}
+
+function pattern() {
+	// more to come...
+	linePattern();
+}
+
 function demof() {
 	if (demo) {
 		document.getElementById("grids").innerHTML = grids(
@@ -92,9 +120,14 @@ setTimeout(function(){ demof(); }, 50);
 
 function startIntro() {
 	var intro = introJs();
+	var hl = 0;
 	intro.onbeforechange(function(targetElement) {
-		if (targetElement.id == "grids") {
+		if (targetElement.id == "grids" && hl == 0) {
 			refresh();
+			hl += 1;
+		} else if (targetElement.id == "grids" && hl == 1) {
+			pattern();
+			hl += 1;
 		}
 	});
 	intro.setOptions({
@@ -115,21 +148,20 @@ function startIntro() {
 		{
 			element: '#grids',
 			intro: 'These grids are generated based on the master password and the identifier.',
-			position: 'top'
+			position: 'right'
 		},
 		{
 			element: '#grids',
-			intro: 'You need to pick 8+ chars in this grids based on your secret pattern.',
-			position: 'top'
+			intro: 'You need to pick 8+ characters based on a secret pattern.',
+			position: 'right'
 		},
 		{
-			intro: "Prefix your password with a special character and a lower case letter ('!a', '#z', ...).<br> This improves password compatibility."
+			element: '#grids',
+			intro: "Prefix them with a special character and a lower case letter like '!a' or '#z'.<br><br>This improves password compatibility.",
+			position: 'right'
 		},
 		{
-			intro: "Your password is ready. Just remember your master password, pattern and prefix."
-		},
-		{
-			intro: "That's all !<br>You can save this page and use it offline.<br>See <a href='https://github.com/lleonini/passwordgrids-cli'>documentation</a> for more informations/"
+			intro: "Your password is ready !<br><br>Remember your master password, pattern and prefix.<br><br>See <a href='https://github.com/lleonini/passwordgrids-cli'>documentation</a> for more informations."
 		}
 		]
 	});
