@@ -1,5 +1,8 @@
 CACHE MANIFEST
-# This is a comment
+# v1.0 2015-12-01
+
+CACHE:
+
 index.html
 css/main.css
 css/introjs.min.css
@@ -7,3 +10,7 @@ js/sha512.js
 js/main.js
 js/intro.min.js
 favicon.ico
+
+NETWORK:
+
+http//www.google-analytics.com/analytics.js
