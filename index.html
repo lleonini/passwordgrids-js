@@ -6,7 +6,7 @@
 		<meta name="keywords" content="password, generator, grid, grids, javascript, passwordgrids, secure, random, unique, free">
 		<meta name="author" content="Lorenzo Leonini">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>PasswordGrids JS - unique secure passwords generator</title>
+		<title>Password Grids - unique secure passwords generator</title>
 		<link rel=icon href="favicon.ico" sizes="16x16" type="image/vnd.microsoft.icon">
 		<link href="css/introjs.min.css" rel="stylesheet">
 		<link href="css/main.css" rel="stylesheet">
@@ -16,10 +16,17 @@
 	</head>
 	<body>
 		<div id="title">
-			<h1 style="margin-bottom: 0"># PasswordGrids</h1>
-			<span id="subtitle">A simple way to generate unique, secure passwords</span>
-			<a class="btn" href="javascript:void(0);"
-				onclick="javascript:startIntro();">Tutorial</a>
+			<h1 style="margin-bottom: 0">Password Grids</h1>
+			<div id="subtitle_zone">
+				<div id="tutorial">
+					<a class="btn" href="javascript:void(0);"
+						onclick="javascript:startIntro();">Tutorial</a>
+				</div>
+				<div id="subtitle">
+					An easy way to generate unique, secure passwords.<br>
+					Nothing is sent over internet. Works offline.
+				</div>
+			</div>
 		</div>
 			
 		<div id="top">
@@ -33,7 +40,7 @@
 		</div>
 		<div id="grids"></div>
 		<div id="doc2">
-			Free, easy and secure. Nothing is sent over internet. Works offline.
+			Quick documentation:
 			<ol>
 				<li>Choose a master password</li>
 				<li>Enter the identifier (website or account name)</li>
@@ -41,6 +48,8 @@
 				<li>Choose a prefix, add it, your passsword is ready !</li>
 				<li>See
 					<a href="https://github.com/lleonini/passwordgrids-cli">documentation</a>
+					or try
+					<a href="javascript:void(0);" onclick="javascript:startIntro();">tutorial</a>
 					for more informations
 				</li>
 			</ol>
@@ -49,7 +58,7 @@
   		<div id="copyright">
 			<a href="https://github.com/lleonini/passwordgrids-cli">documentation</a> -
 			<a href="https://github.com/lleonini/passwordgrids-js">sources</a> -
-    		© 2015 <a href="http://github.com/lleonini">Lorenzo Leonini</a>
+				© 2015 <a href="http://github.com/lleonini">Lorenzo Leonini</a>
   		</div>
 		</div>
 		<script>
